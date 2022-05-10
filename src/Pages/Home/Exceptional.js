@@ -1,6 +1,6 @@
 import React from "react";
 import treatment from "../../assets/images/treatment.png";
-import PrimaryButton from "../Shared/PrimaryButton/PrimaryButton";
+import PrimaryButton from "../Shared/PrimaryButton";
 
 const Exceptional = () => {
   return (
@@ -21,7 +21,7 @@ const Exceptional = () => {
             here', making it look like readable English. Many desktop publishing
             packages and web page
           </p>
-          <PrimaryButton btnText="Get Started"></PrimaryButton>
+          <PrimaryButton>Get Started</PrimaryButton>
         </div>
       </div>
     </div>
