@@ -4,13 +4,13 @@ import PrimaryButton from "../Shared/PrimaryButton";
 
 const Exceptional = () => {
   return (
-    <div class="mb-20 card card-side bg-base-100 shadow-xl grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
+    <div className="mb-20 card card-side bg-base-100 shadow-xl grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
       <figure>
         <img src={treatment} alt="treatment_img" style={{ height: "476px" }} />
       </figure>
-      <div class="card-body">
+      <div className="card-body">
         <div>
-          <h2 class="card-title text-5xl mb-10">
+          <h2 className="card-title text-5xl mb-10">
             Exceptional Dental Care, on Your Terms
           </h2>
           <p className="mb-10">

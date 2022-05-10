@@ -3,7 +3,7 @@ import PrimaryButton from "../Shared/PrimaryButton";
 import doctor from "../../assets/images/doctor.png";
 import appointment from "../../assets/images/appointment.png";
 
-const MoreAppointment = () => {
+const MakeAppointment = () => {
   return (
     <section
       style={{ backgroundImage: `url(${appointment})` }}
@@ -27,4 +27,4 @@ const MoreAppointment = () => {
   );
 };
 
-export default MoreAppointment;
+export default MakeAppointment;
