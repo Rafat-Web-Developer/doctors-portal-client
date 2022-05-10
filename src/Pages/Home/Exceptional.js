@@ -4,7 +4,7 @@ import PrimaryButton from "../Shared/PrimaryButton";
 
 const Exceptional = () => {
   return (
-    <div className="mb-20 card card-side bg-base-100 shadow-xl grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
+    <section className="mb-20 card card-side bg-base-100 shadow-xl grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
       <figure>
         <img src={treatment} alt="treatment_img" style={{ height: "476px" }} />
       </figure>
@@ -24,7 +24,7 @@ const Exceptional = () => {
           <PrimaryButton>Get Started</PrimaryButton>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
