@@ -1,5 +1,6 @@
 import React from "react";
 import treatment from "../../assets/images/treatment.png";
+import PrimaryButton from "../Shared/PrimaryButton/PrimaryButton";
 
 const Exceptional = () => {
   return (
@@ -12,7 +13,7 @@ const Exceptional = () => {
           <h2 class="card-title text-5xl mb-10">
             Exceptional Dental Care, on Your Terms
           </h2>
-          <p>
+          <p className="mb-10">
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout. The point
             of using Lorem Ipsumis that it has a more-or-less normal
@@ -20,7 +21,7 @@ const Exceptional = () => {
             here', making it look like readable English. Many desktop publishing
             packages and web page
           </p>
-          <button class="btn btn-primary mt-10">Get Started</button>
+          <PrimaryButton btnText="Get Started"></PrimaryButton>
         </div>
       </div>
     </div>
