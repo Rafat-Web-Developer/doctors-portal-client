@@ -7,7 +7,7 @@ const Appointment = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   return (
     <div>
-      <main>
+      <main className="lg:px-12 md:px-12">
         <AppointmentBanner
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
