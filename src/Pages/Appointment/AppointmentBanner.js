@@ -7,14 +7,14 @@ const AppointmentBanner = () => {
   const [selected, setSelected] = useState("");
 
   return (
-    <section class="hero min-h-screen">
-      <div class="hero-content flex-col lg:flex-row-reverse">
+    <section className="hero min-h-screen">
+      <div className="hero-content flex-col lg:flex-row-reverse">
         <img
           src={chair}
           className="max-w-sm rounded-lg shadow-2xl lg:ml-10"
           alt="Banner_img"
         />
-        <div className="mt-10">
+        <div>
           <DayPicker mode="single" selected={selected} onSelect={setSelected} />
         </div>
       </div>
