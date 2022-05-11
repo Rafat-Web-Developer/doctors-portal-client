@@ -12,7 +12,7 @@ const Service = ({ service }) => {
           <span className="text-error font-bold">Try Next Day</span>
         )}
         <span>
-          {slots.length} {slots.length > 1 ? "slots" : "slot"} available
+          {slots.length} {slots.length > 1 ? "spaces" : "space"} available
         </span>
         <div class="card-actions justify-center">
           <button
