@@ -1,26 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import "react-day-picker/dist/style.css";
+import { DayPicker } from "react-day-picker";
 import chair from "../../assets/images/chair.png";
 
 const AppointmentBanner = () => {
+  const [selected, setSelected] = useState("");
+
   return (
-    <div class="hero min-h-screen">
+    <section class="hero min-h-screen">
       <div class="hero-content flex-col lg:flex-row-reverse">
         <img
           src={chair}
-          class="max-w-sm rounded-lg shadow-2xl"
+          className="max-w-sm rounded-lg shadow-2xl lg:ml-10"
           alt="Banner_img"
         />
-        <div>
-          <h1 class="text-5xl font-bold">Box Office News!</h1>
-          <p class="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
-          <button class="btn btn-primary">Get Started</button>
+        <div className="mt-10">
+          <DayPicker mode="single" selected={selected} onSelect={setSelected} />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
