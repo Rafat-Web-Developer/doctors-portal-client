@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "react-day-picker/dist/style.css";
 import { DayPicker } from "react-day-picker";
 import chair from "../../assets/images/chair.png";
 
-const AppointmentBanner = () => {
-  const [selected, setSelected] = useState("");
-
+const AppointmentBanner = ({ selectedDate, setSelectedDate }) => {
   return (
     <section className="hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -15,7 +13,11 @@ const AppointmentBanner = () => {
           alt="Banner_img"
         />
         <div>
-          <DayPicker mode="single" selected={selected} onSelect={setSelected} />
+          <DayPicker
+            mode="single"
+            selected={selectedDate}
+            onSelect={setSelectedDate}
+          />
         </div>
       </div>
     </section>
