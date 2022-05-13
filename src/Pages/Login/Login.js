@@ -14,7 +14,7 @@ const Login = () => {
   };
 
   return (
-    <section className="flex justify-center items-center h-screen">
+    <section className="flex justify-center items-center h-screen mt-24">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
@@ -94,7 +94,7 @@ const Login = () => {
           </div>
           <p>
             Create a new account{" "}
-            <Link to="/signUp" className="text-secondary">
+            <Link to="/signUp" className="text-secondary font-bold">
               Sign Up
             </Link>
           </p>

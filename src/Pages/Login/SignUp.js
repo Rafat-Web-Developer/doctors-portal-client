@@ -1,16 +1,41 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const SignUp = () => {
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => {
+  const navigate = useNavigate();
+
+  let errorMessage;
+
+  if (error || updateError) {
+    errorMessage = (
+      <p className="text-error font-bold my-2">
+        {error.message || updateError.message}
+      </p>
+    );
+  }
+
+  const onSubmit = async (data) => {
     console.log(data);
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
+    navigate("/");
   };
 
   return (
@@ -21,6 +46,29 @@ const SignUp = () => {
       >
         <h1 className="text-xl font-bold text-center my-2">Sign Up</h1>
         <div className="card-body">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text font-bold">Name</span>
+            </label>
+            <input
+              type="text"
+              placeholder="name"
+              className="input input-bordered"
+              {...register("name", {
+                required: {
+                  value: true,
+                  message: "Name is required.",
+                },
+              })}
+            />
+            <label className="label">
+              {errors.name?.type === "required" && (
+                <span className="label-text-alt font-bold text-error">
+                  {errors.name.message}
+                </span>
+              )}
+            </label>
+          </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text font-bold">Email</span>
@@ -85,6 +133,7 @@ const SignUp = () => {
               )}
             </label>
           </div>
+          {errorMessage}
           <div className="form-control mt-6">
             <input
               className="btn btn-secondary text-white"
@@ -94,7 +143,7 @@ const SignUp = () => {
           </div>
           <p>
             Already have an account{" "}
-            <Link to="/login" className="text-secondary">
+            <Link to="/login" className="text-secondary font-bold">
               Login
             </Link>
           </p>
