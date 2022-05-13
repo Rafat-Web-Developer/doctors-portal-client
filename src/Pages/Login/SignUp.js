@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
   const {
     register,
     formState: { errors },
@@ -19,7 +19,7 @@ const Login = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
       >
-        <h1 className="text-xl font-bold text-center my-2">Login</h1>
+        <h1 className="text-xl font-bold text-center my-2">Sign Up</h1>
         <div className="card-body">
           <div className="form-control">
             <label className="label">
@@ -89,13 +89,13 @@ const Login = () => {
             <input
               className="btn btn-secondary text-white"
               type="submit"
-              value="Login"
+              value="Sign Up"
             />
           </div>
           <p>
-            Create a new account{" "}
-            <Link to="/signUp" className="text-secondary">
-              Sign Up
+            Already have an account{" "}
+            <Link to="/login" className="text-secondary">
+              Login
             </Link>
           </p>
         </div>
@@ -104,4 +104,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
