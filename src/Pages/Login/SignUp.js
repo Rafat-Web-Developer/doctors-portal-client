@@ -7,6 +7,7 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import Loading from "../Shared/Loading";
 
 const SignUp = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
@@ -21,21 +22,28 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
+  if (loading || updating) {
+    return <Loading></Loading>;
+  }
+
   let errorMessage;
 
   if (error || updateError) {
     errorMessage = (
       <p className="text-error font-bold my-2">
-        {error.message || updateError.message}
+        {error?.message || updateError?.message}
       </p>
     );
   }
 
+  if (user) {
+    navigate("/");
+  }
+
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
-    navigate("/");
   };
 
   return (
