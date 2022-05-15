@@ -6,23 +6,35 @@ import auth from "../../firebase.init";
 const BookingModal = ({ date, treatment, setTreatment }) => {
   const { _id, name, slots } = treatment;
   const [user] = useAuthState(auth);
+  const formattedDate = format(date, "PP");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const appointmentDate = e.target.appointmentDate.value;
-    const appointmentSlotTime = e.target.appointmentSlotTime.value;
-    const userName = e.target.yourName.value;
-    const userEmail = e.target.email.value;
-    const data = {
-      _id,
-      name,
-      appointmentDate,
-      appointmentSlotTime,
-      userName,
-      userEmail,
+    const slot = e.target.appointmentSlotTime.value;
+    const phone = e.target.phone.value;
+    const booking = {
+      treatment_id: _id,
+      treatment_name: name,
+      date: formattedDate,
+      slot,
+      patientEmail: user.email,
+      patientName: user.displayName,
+      phone,
     };
-    console.log(data);
-    setTreatment(null);
+
+    fetch("http://localhost:5000/booking", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+
+        setTreatment(null);
+      });
   };
 
   return (
@@ -65,19 +77,19 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
                 disabled
                 type="text"
                 name="yourName"
-                value={user.displayName}
+                value={user?.displayName}
                 className="input input-bordered w-full max-w-xs"
               />
               <input
                 disabled
                 type="email"
                 name="email"
-                value={user.email}
+                value={user?.email}
                 className="input input-bordered w-full max-w-xs"
               />
               <input
                 type="text"
-                name="number"
+                name="phone"
                 placeholder="Enter your mobile number"
                 className="input input-bordered w-full max-w-xs"
               />
