@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { toast } from "react-toastify";
 
-const BookingModal = ({ date, treatment, setTreatment }) => {
+const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
   const { _id, name, slots } = treatment;
   const [user] = useAuthState(auth);
   const formattedDate = format(date, "PP");
@@ -35,11 +35,11 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
         console.log(data);
         if (data.success) {
           toast("Booking Successfully Alhamdulillah.");
-          setTreatment(null);
         } else {
           toast.error(data.message);
-          setTreatment(null);
         }
+        setTreatment(null);
+        refetch();
       });
   };
 
