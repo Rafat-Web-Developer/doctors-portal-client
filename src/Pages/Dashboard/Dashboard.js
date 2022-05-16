@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -9,19 +10,20 @@ const Dashboard = () => {
         <h1 className="text-primary font-bold text-xl md:text-2xl">
           Welcome to your Dashboard
         </h1>
+        <Outlet />
       </div>
       <div className="drawer-side">
         <label htmlFor="dashboardSidebar" className="drawer-overlay"></label>
         <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
           {/* <!-- Sidebar content here --> */}
           <li>
-            <a>My Appointment</a>
+            <Link to="/dashboard">My Appointment</Link>
           </li>
           <li>
-            <a>My Reviews</a>
+            <Link to="/dashboard/reviews">My Reviews</Link>
           </li>
           <li>
-            <a>My Histories</a>
+            <Link to="/dashboard/histories">My Histories</Link>
           </li>
         </ul>
       </div>
