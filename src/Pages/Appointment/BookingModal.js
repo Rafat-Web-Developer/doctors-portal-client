@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import { toast } from "react-toastify";
 
 const BookingModal = ({ date, treatment, setTreatment }) => {
   const { _id, name, slots } = treatment;
@@ -32,8 +33,13 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-
-        setTreatment(null);
+        if (data.success) {
+          toast("Booking Successfully Alhamdulillah.");
+          setTreatment(null);
+        } else {
+          toast.error(data.message);
+          setTreatment(null);
+        }
       });
   };
 
