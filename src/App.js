@@ -9,6 +9,7 @@ import Navbar from "./Pages/Shared/Navbar";
 import RequireAuth from "./Pages/Shared/RequireAuth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -21,6 +22,14 @@ function App() {
           element={
             <RequireAuth>
               <Appointment></Appointment>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard></Dashboard>
             </RequireAuth>
           }
         ></Route>
