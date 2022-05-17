@@ -8,6 +8,7 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
+import useToken from "../../hooks/useToken";
 
 const SignUp = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
@@ -19,6 +20,8 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  const [token] = useToken(user);
 
   const navigate = useNavigate();
 
@@ -36,9 +39,13 @@ const SignUp = () => {
     );
   }
 
-  if (user) {
+  if (token) {
     navigate("/");
   }
+
+  // if (user) {
+  //   navigate("/");
+  // }
 
   const onSubmit = async (data) => {
     // console.log(data);

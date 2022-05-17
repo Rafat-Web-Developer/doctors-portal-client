@@ -132,9 +132,9 @@ const Login = () => {
             </p>
           </div>
         </form>
-        <div class="divider">OR</div>
+        <div className="divider">OR</div>
         <button
-          class="btn btn-outline btn-success m-5"
+          className="btn btn-outline btn-success m-5"
           onClick={handleGoogleLogin}
         >
           Continue with google
