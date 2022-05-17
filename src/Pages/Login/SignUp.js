@@ -40,7 +40,7 @@ const SignUp = () => {
   }
 
   if (token) {
-    navigate("/");
+    navigate("/appointment");
   }
 
   // if (user) {
