@@ -37,7 +37,7 @@ const Login = () => {
   }
 
   if (token) {
-    navigate("/");
+    navigate("/appointment");
   }
 
   // if (user || gUser) {
