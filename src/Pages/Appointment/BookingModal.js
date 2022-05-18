@@ -23,7 +23,7 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
       phone,
     };
 
-    fetch("http://localhost:5000/booking", {
+    fetch("https://obscure-harbor-59547.herokuapp.com/booking", {
       method: "POST",
       headers: {
         "content-type": "application/json",
