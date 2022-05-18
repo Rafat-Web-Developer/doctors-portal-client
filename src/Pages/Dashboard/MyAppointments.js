@@ -12,7 +12,7 @@ const MyAppointments = () => {
   useEffect(() => {
     if (user) {
       fetch(
-        `https://obscure-harbor-59547.herokuapp.com/bookings?patientEmail=${user?.email}`,
+        `https://obscure-harbor-59547.herokuapp.com/bookings?patientEmail=${user?.user?.email}`,
         {
           method: "GET",
           headers: {
@@ -24,13 +24,15 @@ const MyAppointments = () => {
           if (res.status === 401 || res.status === 403) {
             signOut(auth);
             localStorage.removeItem("accessToken");
-            navigate("/");
+            navigate("/login");
           }
-          res.json();
+          return res.json();
         })
-        .then((data) => setBookings(data));
+        .then((data) => {
+          setBookings(data);
+        });
     }
-  }, []);
+  }, [user]);
 
   return (
     <div className="overflow-x-auto">
