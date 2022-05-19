@@ -1,50 +1,54 @@
 import React from "react";
 import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
-import UsersRow from "./UsersRow";
+import DoctorRow from "./DoctorRow";
 
-const AllUsers = () => {
+const ManageDoctors = () => {
   const {
-    data: users,
+    data: doctors,
     isLoading,
     refetch,
-  } = useQuery("users", () =>
-    fetch("http://localhost:5000/users", {
-      method: "GET",
+  } = useQuery("doctors", () =>
+    fetch("http://localhost:5000/doctor", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     }).then((res) => res.json())
   );
+
   if (isLoading) {
     return <Loading></Loading>;
   }
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-5">All Users</h1>
+      <h1 className="text-2xl font-bold mb-5">All Doctors</h1>
       <div className="overflow-x-auto">
         <table className="table table-compact w-full">
           <thead>
             <tr>
               <th>#</th>
-              <th>User's Email</th>
+              <th>Avatar</th>
+              <th>Doctor's Name</th>
+              <th>Doctor's Email</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
-              <UsersRow
-                key={user._id}
-                user={user}
+            {doctors.map((doctor, index) => (
+              <DoctorRow
+                key={doctor._id}
+                doctor={doctor}
                 index={index}
                 refetch={refetch}
-              ></UsersRow>
+              ></DoctorRow>
             ))}
           </tbody>
           <tfoot>
             <tr>
               <th>#</th>
-              <th>User's Email</th>
+              <th>Avatar</th>
+              <th>Doctor's Name</th>
+              <th>Doctor's Email</th>
               <th>Action</th>
             </tr>
           </tfoot>
@@ -54,4 +58,4 @@ const AllUsers = () => {
   );
 };
 
-export default AllUsers;
+export default ManageDoctors;
