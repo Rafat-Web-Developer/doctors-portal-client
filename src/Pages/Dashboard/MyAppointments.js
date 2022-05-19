@@ -14,12 +14,15 @@ const MyAppointments = () => {
   useEffect(() => {
     if (user) {
       setDataLoading(true);
-      fetch(`http://localhost:5000/bookings?patientEmail=${user?.email}`, {
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
+      fetch(
+        `https://obscure-harbor-59547.herokuapp.com/bookings?patientEmail=${user?.email}`,
+        {
+          method: "GET",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
         .then((res) => {
           if (res.status === 401 || res.status === 403) {
             signOut(auth);
