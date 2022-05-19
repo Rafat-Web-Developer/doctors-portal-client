@@ -1,6 +1,6 @@
 import React from "react";
 
-const DoctorRow = ({ doctor, index, refetch }) => {
+const DoctorRow = ({ doctor, index, setDeletedDoctor }) => {
   const { img, name, email } = doctor;
   return (
     <tr className="font-bold">
@@ -15,9 +15,13 @@ const DoctorRow = ({ doctor, index, refetch }) => {
       <td>{name}</td>
       <td>{email}</td>
       <td>
-        <button className="btn btn-xs btn-secondary font-bold text-white">
+        <label
+          onClick={() => setDeletedDoctor(doctor)}
+          for="doctor-delete-model"
+          class="btn btn-xs btn-error font-bold text-white"
+        >
           Delete
-        </button>
+        </label>
       </td>
     </tr>
   );
