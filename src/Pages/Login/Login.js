@@ -19,11 +19,11 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
-  const [token] = useToken(user || gUser);
+  const [token, tokenLoading] = useToken(user || gUser);
 
   const navigate = useNavigate();
 
-  if (loading || gLoading) {
+  if (loading || gLoading || tokenLoading) {
     return <Loading></Loading>;
   }
 
@@ -44,9 +44,9 @@ const Login = () => {
   //   navigate("/");
   // }
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // console.log(data);
-    signInWithEmailAndPassword(data.email, data.password);
+    await signInWithEmailAndPassword(data.email, data.password);
   };
 
   const handleGoogleLogin = () => {

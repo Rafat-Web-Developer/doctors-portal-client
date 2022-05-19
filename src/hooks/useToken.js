@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 
 const useToken = (user) => {
   const [token, setToken] = useState("");
+  const [tokenLoading, setTokenLoading] = useState(false);
 
   useEffect(() => {
     const email = user?.user?.email;
     const currentUser = { email: email };
     if (email) {
-      fetch(`https://obscure-harbor-59547.herokuapp.com/user/${email}`, {
+      setTokenLoading(true);
+      fetch(`http://localhost:5000/user/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -16,13 +18,13 @@ const useToken = (user) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data?.result);
           localStorage.setItem("accessToken", data?.token);
           setToken(data?.token);
+          setTokenLoading(false);
         });
     }
   }, [user]);
-  return [token];
+  return [token, tokenLoading];
 };
 
 export default useToken;

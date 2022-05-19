@@ -3,23 +3,23 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import Loading from "../Shared/Loading";
 
 const MyAppointments = () => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+  const [dataLoading, setDataLoading] = useState(false);
   const [bookings, setBookings] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
-      fetch(
-        `https://obscure-harbor-59547.herokuapp.com/bookings?patientEmail=${user?.user?.email}`,
-        {
-          method: "GET",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      )
+      setDataLoading(true);
+      fetch(`http://localhost:5000/bookings?patientEmail=${user?.email}`, {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
         .then((res) => {
           if (res.status === 401 || res.status === 403) {
             signOut(auth);
@@ -30,9 +30,14 @@ const MyAppointments = () => {
         })
         .then((data) => {
           setBookings(data);
+          setDataLoading(false);
         });
     }
   }, [user]);
+
+  if (loading || dataLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="overflow-x-auto">
