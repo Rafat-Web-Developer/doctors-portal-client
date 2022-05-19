@@ -35,9 +35,14 @@ const Dashboard = () => {
             <Link to="/dashboard/histories">My Histories</Link>
           </li>
           {admin && (
-            <li>
-              <Link to="/dashboard/allUsers">All Users</Link>
-            </li>
+            <>
+              <li>
+                <Link to="/dashboard/allUsers">All Users</Link>
+              </li>
+              <li>
+                <Link to="/dashboard/addDoctor">Add Doctor</Link>
+              </li>
+            </>
           )}
         </ul>
       </div>
